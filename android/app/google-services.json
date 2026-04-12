@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1031338327510",
+    "project_id": "handwerk-a55fa",
+    "storage_bucket": "handwerk-a55fa.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1031338327510:android:d620613a39d43fa79bb877",
+        "android_client_info": {
+          "package_name": "com.company.handwerk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1031338327510-a7p4m16mc22u2sm5vu26pi7aqghrjlmm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.company.handwerk",
+            "certificate_hash": "0fa097d47af08441ac8277b7c5da75ef0ac238d4"
+          }
+        },
+        {
+          "client_id": "1031338327510-1sasr7tp4na3drcntoal33a6hkjh8vqv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9ebPsmlqcfjpFV6gIpoNPuJlMrIifcrk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1031338327510-1sasr7tp4na3drcntoal33a6hkjh8vqv.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1031338327510-h4lbaqhsbcvg4nsghm44pa2f4vjaplan.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.company.handwerk"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
