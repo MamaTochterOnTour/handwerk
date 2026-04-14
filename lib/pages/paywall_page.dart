@@ -291,6 +291,30 @@ class _PaywallPageState extends State<PaywallPage> {
                     ],
                   ),
 
+                  const SizedBox(height: 10),
+
+                  Container(
+                    padding: const EdgeInsets.all(12),
+                    margin: const EdgeInsets.only(top: 10),
+                    decoration: BoxDecoration(
+                      color: Colors.grey[100],
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Text(
+                      "7 Tage kostenlos testen.\n\n"
+                      "Danach verlängert sich das Abo automatisch:\n"
+                      "• Monatlich: ${monthly.isNotEmpty ? monthly.first.storeProduct.priceString : ''} pro Monat\n"
+                      "• Jährlich: ${yearly.isNotEmpty ? yearly.first.storeProduct.priceString : ''} pro Jahr\n\n"
+                      "Die Zahlung wird automatisch nach Ablauf der Testphase abgebucht.\n"
+                      "Kündigung jederzeit bis 24 Stunden vor Ablauf möglich.",
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+
                   const SizedBox(height: 20),
 
                   Center(
