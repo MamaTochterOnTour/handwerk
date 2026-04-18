@@ -20,7 +20,6 @@ class ProfilPage extends StatefulWidget {
 class _ProfilPageState extends State<ProfilPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  String? _userType;
   XFile? _tempImage;
 
   // 🔥 NEU HINZUFÜGEN
@@ -30,26 +29,6 @@ class _ProfilPageState extends State<ProfilPage> {
   void initState() {
     super.initState();
     _profileFuture = Future.wait([_getCurrentUserData(), _getHandwerkerDoc()]);
-    _loadUserType(); // 🔥 HINZUFÜGEN
-  }
-
-  Future<void> _loadUserType() async {
-    final uid = _auth.currentUser!.uid;
-
-    final doc = await FirebaseFirestore.instance
-        .collection('users')
-        .doc(uid)
-        .get();
-
-    if (doc.exists) {
-      final data = doc.data() as Map<String, dynamic>;
-
-      if (!mounted) return;
-
-      setState(() {
-        _userType = (data['userType'] ?? '').toString().trim();
-      });
-    }
   }
 
   Future<void> _pickImagePreview() async {
