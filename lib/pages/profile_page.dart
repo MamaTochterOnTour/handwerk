@@ -164,18 +164,16 @@ class _ProfilPageState extends State<ProfilPage> {
         centerTitle: true,
 
         // 🔥 NEU: Diamant links
-        leading: (_userType?.trim().toLowerCase() == "handwerk")
-            ? IconButton(
-                icon: const Icon(Icons.diamond),
-                color: blueColor,
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => const PaywallPage()),
-                  );
-                },
-              )
-            : null,
+        leading: IconButton(
+          icon: const Icon(Icons.diamond),
+          color: blueColor,
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const PaywallPage()),
+            );
+          },
+        ),
 
         title: Text(
           'Profil',

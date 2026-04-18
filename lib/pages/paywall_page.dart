@@ -21,6 +21,7 @@ class _PaywallPageState extends State<PaywallPage> {
   bool _isPurchasing = false;
   bool _isPremium = false;
   String _planType = "free";
+  String _userType = "";
 
   final String entitlementId = "all_access";
 
@@ -49,6 +50,7 @@ class _PaywallPageState extends State<PaywallPage> {
     setState(() {
       _isPremium = data?['isPremium'] ?? false;
       _planType = data?['plan'] ?? "free";
+      _userType = (data?['userType'] ?? "").toString().toLowerCase();
     });
   }
 
@@ -86,6 +88,20 @@ class _PaywallPageState extends State<PaywallPage> {
   }
 
   Future<void> _buy(Package package) async {
+    // ❌ Kunden blockieren
+    if (_userType != "handwerk") {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Dieses Premium-Abo ist nur für Handwerksbetriebe verfügbar.",
+          ),
+        ),
+      );
+      return;
+    }
+
     setState(() => _isPurchasing = true);
 
     try {
@@ -107,13 +123,29 @@ class _PaywallPageState extends State<PaywallPage> {
           MaterialPageRoute(builder: (_) => const HandwerkerDataPage()),
         );
       }
-    } catch (_) {}
+    } catch (e) {
+      debugPrint("Kauf Fehler: $e");
+    }
 
     if (!mounted) return;
     setState(() => _isPurchasing = false);
   }
 
   Future<void> _restore() async {
+    // ❌ Kunden blockieren
+    if (_userType != "handwerk") {
+      if (!mounted) return;
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            "Wiederherstellung ist nur für Handwerkskonten verfügbar.",
+          ),
+        ),
+      );
+      return;
+    }
+
     try {
       final info = await Purchases.restorePurchases();
 
@@ -121,9 +153,18 @@ class _PaywallPageState extends State<PaywallPage> {
 
       if (active) {
         await Purchases.syncPurchases();
+
         await _updateUserPremium(isPremium: true, plan: "restored");
+
+        if (!mounted) return;
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Kauf erfolgreich wiederhergestellt.")),
+        );
       }
-    } catch (_) {}
+    } catch (e) {
+      debugPrint("Restore Fehler: $e");
+    }
   }
 
   @override
